@@ -9,11 +9,13 @@ const indexRoutes = require("./src/routes");
 const adminRoutes = require("./src/routes/admin");
 const path = require("path");
 const session = require("express-session");
-
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 // Definindo View Engine
 app.set("view engine", "ejs");
 app.set("views", path.resolve("src", "views"));
-
+app.use(cookieParser());
+app.use(logger("dev"));
 // Express Session
 app.use(
   session({
