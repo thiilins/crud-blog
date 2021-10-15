@@ -5,5 +5,8 @@ const IndexController = {
   login(req, res) {
     res.render("pages/login");
   },
+  viewPost(req, res) {
+    res.render("pages/post");
+  },
 };
 module.exports = IndexController;

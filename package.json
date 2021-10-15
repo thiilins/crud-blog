@@ -19,6 +19,8 @@
     "method-override": "^3.0.0",
     "multer": "^1.4.3",
     "muter": "^0.7.0",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.7.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
