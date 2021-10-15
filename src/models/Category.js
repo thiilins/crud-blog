@@ -11,14 +11,8 @@ module.exports = (connection, DataTypes) => {
         type: DataTypes.STRING(200),
         unique: true,
       },
-      active: {
+      enable: {
         type: DataTypes.BOOLEAN,
-      },
-      created_at: {
-        type: DataTypes.DATE,
-      },
-      updated_at: {
-        type: DataTypes.DATE,
       },
     },
     {

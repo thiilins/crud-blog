@@ -7,6 +7,7 @@ const maintenance = false;
 const methodOverride = require("method-override");
 const indexRoutes = require("./src/routes");
 const adminRoutes = require("./src/routes/admin");
+const userRoutes = require("./src/routes/user");
 const path = require("path");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -32,7 +33,9 @@ app.use(methodOverride("_method")); //*?_method=PUT
 
 //Instanciando Rotas
 app.use("/", indexRoutes);
+app.use("/", userRoutes);
 app.use("/admin", adminRoutes);
+
 // Manutenção
 app.use((req, res, next) => {
   !maintenance ? next() : res.status(503).render("pages/maintenance");

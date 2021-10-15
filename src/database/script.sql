@@ -11,9 +11,9 @@ avatar VARCHAR(200),
 github VARCHAR(200),
 linkedin VARCHAR(200),
 bio MEDIUMTEXT,
-active INT(1),
-created_at TIMESTAMP,
-updated_at  timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+enable INT(1),
+createdAt TIMESTAMP,
+updatedAt  timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
 
 CREATE TABLE posts(
@@ -22,26 +22,26 @@ user_id INT(10),
 title VARCHAR(500),
 content LONGTEXT,
 category_id INT(10),
-active INT(1),
-created_at TIMESTAMP,
-updated_at timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+enable INT(1),
+createdAt TIMESTAMP,
+updatedAt timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ); 
 
 CREATE TABLE categories(
 id INT(10) AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(200) UNIQUE,
-active INT(1),
-created_at TIMESTAMP,
-updated_at timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+enable INT(1),
+createdAt TIMESTAMP,
+updatedAt timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
 
 CREATE TABLE comments(
 id INT(10) AUTO_INCREMENT PRIMARY KEY,
 user_id INT(10),
 comment MEDIUMTEXT,
-active INT(1),
-created_at TIMESTAMP,
-updated_at timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+enable INT(1),
+createdAt TIMESTAMP,
+updatedAt timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
 
 

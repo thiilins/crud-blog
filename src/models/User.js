@@ -26,14 +26,8 @@ module.exports = (connection, DataTypes) => {
       bio: {
         type: DataTypes.TEXT("medium"),
       },
-      active: {
+      enable: {
         type: DataTypes.BOOLEAN,
-      },
-      created_at: {
-        type: DataTypes.DATE,
-      },
-      updated_at: {
-        type: DataTypes.DATE,
       },
     },
     {

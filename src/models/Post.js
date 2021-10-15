@@ -19,14 +19,8 @@ module.exports = (connection, DataTypes) => {
       category_id: {
         type: DataTypes.INTEGER,
       },
-      active: {
+      enable: {
         type: DataTypes.BOOLEAN,
-      },
-      created_at: {
-        type: DataTypes.DATE,
-      },
-      updated_at: {
-        type: DataTypes.DATE,
       },
     },
     {
