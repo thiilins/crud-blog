@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "./node_modules/.bin/nodemon app.js",
-    "devg": "nodemon app.js"
+    "start": "node src/server.js",
+    "dev": "./node_modules/.bin/nodemon src/server.js",
+    "devg": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "sequelize-cli": "^6.2.0"
   }
 }
