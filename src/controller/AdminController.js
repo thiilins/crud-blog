@@ -6,27 +6,31 @@ const IndexController = {
   },
   async listPost(req, res) {
     try {
-      const posts = await Post.findAll({
-        include: [
-          {
-            model: User,
-            as: "user",
-            required: false,
-          },
-          {
-            model: Category,
-            as: "category",
-            required: false,
-          },
-          {
-            model: Comment,
-            as: "comments",
-            required: false,
-          },
-        ],
-      });
+      const posts = await Post.findAll(
+        {
+          include: [
+            {
+              model: User,
+              as: "user",
+              required: false,
+            },
+            {
+              model: Category,
+              as: "category",
+              required: false,
+            },
+            {
+              model: Comment,
+              as: "comments",
+              required: false,
+            },
+          ],
+        },
+        {
+          order: [["id", "ASC"]],
+        }
+      );
       return res.render("admin/list-posts", { posts });
-      // return res.status(200).json(posts);
     } catch (error) {
       console.log(error);
       return res.render("admin/list-posts", { error });
@@ -85,39 +89,43 @@ const IndexController = {
           },
         ],
       });
-      return res.render("admin/view-post", { post });
+      const categories = await Category.findAll();
+      const users = await User.findAll();
+      console.log(categories);
+      return res.render("admin/edit-post", { post, categories, users });
     } catch (error) {
       console.log(error);
       return res.render("admin/view-post", { error });
     }
   },
   async deletePost(req, res) {
-    // try {
-    const { id } = req.params;
-    const post = await Post.findByPk(id, {
-      include: [
-        {
-          model: User,
-          as: "user",
-          required: false,
-        },
-        {
-          model: Category,
-          as: "category",
-          required: false,
-        },
-        {
-          model: Comment,
-          as: "comments",
-          required: false,
-        },
-      ],
-    });
+    try {
+      const { id } = req.params;
+      const post = await Post.findByPk(id, {
+        include: [
+          {
+            model: User,
+            as: "user",
+            required: false,
+          },
+          {
+            model: Category,
+            as: "category",
+            required: false,
+          },
+          {
+            model: Comment,
+            as: "comments",
+            required: false,
+          },
+        ],
+      });
 
-    return res.render("admin/delete-post", { post });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      return res.render("admin/delete-post", { post });
+    } catch (error) {
+      console.log(error);
+      return res.render("admin/delete-post", { error });
+    }
   },
   noPosts(req, res) {
     return res.render("admin/no-posts");

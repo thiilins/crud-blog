@@ -1,6 +1,6 @@
 const { Category, Comment, User, Post } = require("../models");
 
-const CategoryControllerApi = {
+const CategoryController = {
   async listCategory(req, res) {
     try {
       const categories = await Category.findAll({
@@ -58,4 +58,4 @@ const CategoryControllerApi = {
   },
 };
 
-module.exports = { CategoryController, CategoryControllerApi };
+module.exports = CategoryController;

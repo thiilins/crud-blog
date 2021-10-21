@@ -32,10 +32,12 @@ module.exports = (connection, DataTypes) => {
     Post.belongsTo(models.Category, {
       foreignKey: "category_id",
       as: "category",
+      onDelete: "cascade",
     });
     Post.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
+      onDelete: "cascade",
     });
     Post.hasMany(models.Comment, {
       foreignKey: "post_id",

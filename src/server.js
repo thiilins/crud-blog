@@ -33,7 +33,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); //*?_method=PUT
 
 app.use("/", indexRoutes);
-
 app.use("/auth", userRoutes);
 app.use("/admin", adminRoutes);
 

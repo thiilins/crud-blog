@@ -29,10 +29,12 @@ module.exports = (connection, DataTypes) => {
     Comment.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
+      onDelete: "cascade",
     });
     Comment.belongsTo(models.Post, {
       foreignKey: "post_id",
       as: "post",
+      onDelete: "cascade",
     });
   };
   return Comment;

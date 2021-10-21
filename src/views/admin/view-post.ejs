@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <body>
-    <%- include('./partials/sidebar-top'); %>
+  <body class="bg-purple-900">
+    <%- include('./partials/header.ejs'); %>
     <main
       class="
         flex flex-col
@@ -15,7 +15,16 @@
       "
     >
       <!-- This example requires Tailwind CSS v2.0+ -->
-      <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div
+        class="
+          bg-purple-200
+          p-28
+          rounded-3xl
+          shadow
+          overflow-hidden
+          sm:rounded-lg
+        "
+      >
         <div class="px-4 py-5 sm:px-6">
           <h3 class="text-lg leading-6 font-medium text-gray-900">
             Applicant Information
@@ -213,6 +222,5 @@
         </button>
       </div>
     </main>
-    <%- include('./partials/sidebar-bottom'); %>
   </body>
 </html>

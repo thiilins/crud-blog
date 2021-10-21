@@ -51,6 +51,5 @@ ADD FOREIGN KEY (user_id) REFERENCES users(id),
 ADD FOREIGN KEY (category_id) REFERENCES categories(id);
 
 ALTER TABLE comments 
-ADD FOREIGN KEY (user_id) REFERENCES users(id);
-
-
+ADD FOREIGN KEY (user_id) REFERENCES users(id),
+ADD FOREIGN KEY (post_id) REFERENCES posts(id);
