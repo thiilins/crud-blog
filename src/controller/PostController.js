@@ -4,7 +4,23 @@ const PostController = {
   async listPosts(req, res) {
     try {
       const posts = await Post.findAll({
-        order: ["name", "ASC"],
+        include: [
+          {
+            model: Category,
+            as: "category",
+            required: false,
+          },
+          {
+            model: User,
+            as: "user",
+            required: true,
+          },
+          {
+            model: Comment,
+            as: "comments",
+            required: false,
+          },
+        ],
       });
       return res.status(200).json(posts);
     } catch (error) {

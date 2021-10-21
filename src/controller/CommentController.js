@@ -4,7 +4,7 @@ const CommentController = {
   async listComments(req, res) {
     try {
       const comments = await Comment.findAll({
-        order: ["name", "ASC"],
+        order: [["post_id", "ASC"]],
       });
       return res.status(200).json(comments);
     } catch (error) {

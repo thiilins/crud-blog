@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <%- include('../../partials/head'); %>
+  <%- include('./partials/head'); %>
   <body>
     <%- include('./partials/sidebar-top'); %>
     <main
@@ -91,10 +91,13 @@
                     <th scope="col" class="relative px-6 py-3">
                       <span class="sr-only">Editar</span>
                     </th>
+                    <th scope="col" class="relative px-6 py-3">
+                      <span class="sr-only">Excluir</span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Odd row -->
+                  <% posts.forEach(post =>{%>
                   <tr class="bg-white">
                     <td
                       class="
@@ -106,17 +109,17 @@
                         text-gray-900
                       "
                     >
-                      Jane Cooper
+                      <%= post.title %>
                     </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Regional Paradigm Technician
+                      <%= post.category.name %>
                     </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
-                      jane.cooper@example.com
+                      <%= post.user.username %>
                     </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
@@ -132,11 +135,30 @@
                         font-medium
                       "
                     >
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                        >Edit</a
+                      <a
+                        href="/admin/editar/<%= post.id %>"
+                        class="text-indigo-600 hover:text-indigo-900"
+                        >Editar</a
+                      >
+                    </td>
+                    <td
+                      class="
+                        px-6
+                        py-4
+                        whitespace-nowrap
+                        text-right text-sm
+                        font-medium
+                      "
+                    >
+                      <a
+                        href="/admin/deletar/<%= post.id %>"
+                        class="text-indigo-600 hover:text-indigo-900"
+                        >Excluir</a
                       >
                     </td>
                   </tr>
+                  <% })%>
+
                   <!-- END -->
                 </tbody>
               </table>

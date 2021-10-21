@@ -1,10 +1,10 @@
 const { Category, Comment, User, Post } = require("../models");
 
-const CategoryController = {
+const CategoryControllerApi = {
   async listCategory(req, res) {
     try {
       const categories = await Category.findAll({
-        order: ["name", "ASC"],
+        order: [["id", "ASC"]],
       });
       return res.status(200).json(categories);
     } catch (error) {
@@ -16,7 +16,7 @@ const CategoryController = {
     try {
       const { name } = req.body;
       const NewCategory = await Category.create({
-        nome,
+        name,
         enable: 1,
       });
       return res.status(200).json(NewCategory);
@@ -57,4 +57,5 @@ const CategoryController = {
     }
   },
 };
-module.exports = CategoryController;
+
+module.exports = { CategoryController, CategoryControllerApi };

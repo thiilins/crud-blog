@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Post, Comment } = require("../models");
 const errors = require("./errors");
 const bcrypt = require("bcryptjs");
 
@@ -14,7 +14,9 @@ const UserController = {
               error: errors.userNotFound,
             });
       } else {
-        const users = await User.findAll();
+        const users = await User.findAll({
+          order: [["username", "ASC"]],
+        });
         return res.status(200).json(users);
       }
     } catch (error) {
@@ -64,7 +66,7 @@ const UserController = {
       if (password) {
         password = bcrypt.hashSync(password, 10);
       }
-      const userUpdated = await Post.update(
+      const userUpdated = await User.update(
         {
           fullname,
           username,

@@ -1,50 +1,126 @@
 const { User, Post, Comment, Category } = require("../models");
+
 const IndexController = {
   dashboard(req, res) {
-    res.render("pages/admin/dashboard");
+    res.render("admin/dashboard");
   },
   async listPost(req, res) {
     try {
       const posts = await Post.findAll({
         include: [
           {
-            model: Category,
-            as: "category",
-            required: true,
-          },
-          {
             model: User,
             as: "user",
-            required: true,
+            required: false,
+          },
+          {
+            model: Category,
+            as: "category",
+            required: false,
           },
           {
             model: Comment,
             as: "comments",
-            required: true,
+            required: false,
           },
         ],
       });
-      console.log(posts);
-      return res.render("pages/admin/list-posts");
-      // && res.status(200).json(posts)
+      return res.render("admin/list-posts", { posts });
+      // return res.status(200).json(posts);
     } catch (error) {
       console.log(error);
+      return res.render("admin/list-posts", { error });
     }
   },
-  viewPost(req, res) {
-    res.render("pages/admin/view-post");
+  async viewPost(req, res) {
+    try {
+      const { id } = req.params;
+      const post = await Post.findByPk(id, {
+        include: [
+          {
+            model: User,
+            as: "user",
+            required: false,
+          },
+          {
+            model: Category,
+            as: "category",
+            required: false,
+          },
+          {
+            model: Comment,
+            as: "comments",
+            required: false,
+          },
+        ],
+      });
+      return res.render("admin/view-post", { post });
+    } catch (error) {
+      console.log(error);
+      return res.render("admin/view-post", { error });
+    }
   },
   addPost(req, res) {
-    res.render("pages/admin/add-post");
+    res.render("admin/add-post");
   },
-  editPost(req, res) {
-    res.render("pages/admin/edit-post");
+  async editPost(req, res) {
+    try {
+      const { id } = req.params;
+      const post = await Post.findByPk(id, {
+        include: [
+          {
+            model: User,
+            as: "user",
+            required: false,
+          },
+          {
+            model: Category,
+            as: "category",
+            required: false,
+          },
+          {
+            model: Comment,
+            as: "comments",
+            required: false,
+          },
+        ],
+      });
+      return res.render("admin/view-post", { post });
+    } catch (error) {
+      console.log(error);
+      return res.render("admin/view-post", { error });
+    }
   },
-  deletePost(req, res) {
-    res.render("pages/admin/delete-post");
+  async deletePost(req, res) {
+    // try {
+    const { id } = req.params;
+    const post = await Post.findByPk(id, {
+      include: [
+        {
+          model: User,
+          as: "user",
+          required: false,
+        },
+        {
+          model: Category,
+          as: "category",
+          required: false,
+        },
+        {
+          model: Comment,
+          as: "comments",
+          required: false,
+        },
+      ],
+    });
+
+    return res.render("admin/delete-post", { post });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   },
   noPosts(req, res) {
-    res.render("pages/admin/no-posts");
+    return res.render("admin/no-posts");
   },
 };
 module.exports = IndexController;

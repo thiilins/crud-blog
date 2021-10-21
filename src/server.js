@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const indexRoutes = require("./routes");
 const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
-const apiRoutes = require("./routes/api");
+
 const path = require("path");
 const session = require("express-session");
 const logger = require("morgan");
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); //*?_method=PUT
 
 app.use("/", indexRoutes);
-api.use("/api", apiRoutes);
+
 app.use("/auth", userRoutes);
 app.use("/admin", adminRoutes);
 
