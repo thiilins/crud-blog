@@ -3,7 +3,6 @@
   <%- include('./partials/head'); %>
   <body class="bg-purple-900">
     <%- include('./partials/header'); %>
-
     <main
       class="
         flex flex-col
@@ -27,6 +26,10 @@
           rounded-3xl min-w-full	
         "
       >
+      <div>
+  <label for="title" class="sr-only">Imagem destacada</label>
+  <input type="file" name="title" id="title" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full  border-gray-300 rounded-2xl outline-none	p-2	" value="<%=post.title%>"placeholder="Titulo">
+</div>
 <div>
   <label for="title" class="sr-only">Titulo</label>
   <input type="text" name="title" id="title" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full text-2xl	font-bold	 border-gray-300 rounded-2xl outline-none	p-2	" value="<%=post.title%>"placeholder="Titulo">
@@ -35,7 +38,6 @@
   <label for="content" class="sr-only">Conteúdo</label>
   <textarea rows="20"name="content" id="content" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full text-sm border-gray-300 rounded-2xl outline-none	p-10"><%=post.content%></textarea>
 </div>
-
       <div class="grid grid-cols-2 gap-4">
         <div class="col-span-1">
           <label for="location" class="block text-sm font-medium text-gray-700"></label>

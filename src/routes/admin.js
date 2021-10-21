@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const uploadFile = require("../middlewares/upload-file");
 
 // CONTROLLERS
 const AdminController = require("../controller/AdminController");
-const PostController = require("../controller/PostController");
+const { PostControllerAdmin } = require("../controller/PostController");
 const CommentsController = require("../controller/CommentController");
 const UserController = require("../controller/UserController");
 const CategoryController = require("../controller/CategoryController");
@@ -11,13 +12,12 @@ const CategoryController = require("../controller/CategoryController");
 /**********************
  * VIEWS E FRONT
  **********************/
+
 // POST
 router.get("/", AdminController.dashboard);
-router.get("/post", AdminController.listPost);
-router.get("/post/ver/:id?", AdminController.viewPost);
 router.get("/post/adicionar", AdminController.addPost);
-router.get("/post/editar/:id?", AdminController.editPost);
-router.get("/post/deletar/:id", AdminController.deletePost);
+router.get("/post/:id/editar/", AdminController.editPost);
+router.get("/post/:id/deletar/", AdminController.deletePost);
 router.get("/sem-posts", AdminController.noPosts);
 
 /**********************
@@ -25,9 +25,16 @@ router.get("/sem-posts", AdminController.noPosts);
  **********************/
 
 //POST
-router.delete("/post/:id", PostController.deletePost);
-router.put("/post/:id", PostController.editPost);
-router.post("/post", PostController.createPost);
+router.get("/post", PostControllerAdmin.listPost);
+router.get("/post/:id?", PostControllerAdmin.viewPost);
+router.delete("/post/:id", PostControllerAdmin.deletePost);
+router.put("/post/:id", PostControllerAdmin.editPost);
+router.post(
+  "/post",
+  uploadFile.single("featured_img"),
+  PostControllerAdmin.createPost
+);
+
 //COMMENTS
 router.post("/comments", CommentsController.createComment);
 router.get("/comments/:id?", CommentsController.listComments);

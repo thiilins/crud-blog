@@ -13,6 +13,9 @@ module.exports = (connection, DataTypes) => {
       title: {
         type: DataTypes.STRING(500),
       },
+      featured_img: {
+        type: DataTypes.STRING(500),
+      },
       content: {
         type: DataTypes.TEXT("long"),
       },

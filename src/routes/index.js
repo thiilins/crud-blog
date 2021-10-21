@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const IndexController = require("../controller/IndexController");
+const AuthController = require("../controller/AuthController");
+const { PostController } = require("../controller/PostController");
 
-router.get("/", IndexController.index);
-router.get("/login", IndexController.login);
-router.get("/post/:id", IndexController.viewPost);
+router.get("/", PostController.indexListPost);
+router.get("/post/:id?", PostController.indexViewPost);
 
+router.get("/login", AuthController.login);
 
 module.exports = router;

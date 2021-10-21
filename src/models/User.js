@@ -15,6 +15,9 @@ module.exports = (connection, DataTypes) => {
         unique: true,
       },
       password: {
+        type: DataTypes.STRING(256),
+      },
+      avatar: {
         type: DataTypes.STRING(200),
       },
       github: {
