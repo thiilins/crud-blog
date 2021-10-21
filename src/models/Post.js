@@ -28,5 +28,19 @@ module.exports = (connection, DataTypes) => {
       timestamps: true,
     }
   );
+  Post.associate = (models) => {
+    Post.belongsTo(models.Category, {
+      foreignKey: "category_id",
+      as: "category",
+    });
+    Post.belongsTo(models.User, {
+      foreignKey: "user_id",
+      as: "user",
+    });
+    Post.hasMany(models.Comment, {
+      foreignKey: "post_id",
+      as: "comments",
+    });
+  };
   return Post;
 };

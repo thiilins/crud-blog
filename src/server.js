@@ -4,19 +4,19 @@ const port = 3000;
 const maintenance = false;
 
 const methodOverride = require("method-override");
-const indexRoutes = require("./src/routes");
-const adminRoutes = require("./src/routes/admin");
-const userRoutes = require("./src/routes/user");
+const indexRoutes = require("./routes");
+const adminRoutes = require("./routes/admin");
+const userRoutes = require("./routes/user");
+const apiRoutes = require("./routes/api");
 const path = require("path");
 const session = require("express-session");
-const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const cors = require("cors");
+// const cors = require("cors");
 app.set("view engine", "ejs");
 app.set("views", path.resolve("src", "views"));
 
 app.use(logger("dev"));
-app.use(cors);
+// app.use(cors);
 app.use(
   session({
     secret: "CRUDBLOG-TD",
@@ -33,7 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); //*?_method=PUT
 
 app.use("/", indexRoutes);
-app.use("/", userRoutes);
+api.use("/api", apiRoutes);
+app.use("/auth", userRoutes);
 app.use("/admin", adminRoutes);
 
 // // Manutenção

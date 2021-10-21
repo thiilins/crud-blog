@@ -10,6 +10,9 @@ module.exports = (connection, DataTypes) => {
       user_id: {
         type: DataTypes.INTEGER,
       },
+      post_id: {
+        type: DataTypes.INTEGER,
+      },
       comment: {
         type: DataTypes.TEXT("medium"),
       },
@@ -22,5 +25,15 @@ module.exports = (connection, DataTypes) => {
       timestamps: true,
     }
   );
+  Comment.associate = (models) => {
+    Comment.belongsTo(models.User, {
+      foreignKey: "user_id",
+      as: "user",
+    });
+    Comment.belongsTo(models.Post, {
+      foreignKey: "post_id",
+      as: "post",
+    });
+  };
   return Comment;
 };

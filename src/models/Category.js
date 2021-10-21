@@ -20,5 +20,11 @@ module.exports = (connection, DataTypes) => {
       timestamps: true,
     }
   );
+  Category.associate = (models) => {
+    Category.hasMany(models.Post, {
+      foreignKey: "category_id",
+      as: "posts",
+    });
+  };
   return Category;
 };
