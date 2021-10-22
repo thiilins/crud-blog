@@ -6,7 +6,7 @@ const maintenance = false;
 const methodOverride = require("method-override");
 const indexRoutes = require("./routes");
 const adminRoutes = require("./routes/admin");
-const userRoutes = require("./routes/user");
+const authRoutes = require("./routes/auth");
 
 const path = require("path");
 const session = require("express-session");
@@ -33,13 +33,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); //*?_method=PUT
 
 app.use("/", indexRoutes);
-app.use("/auth", userRoutes);
+app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 
-// // Manutenção
-// app.use((req, res, next) => {
-//   !maintenance ? next() : res.status(503).render("pages/maintenance");
-// });
+// Manutenção
+app.use((req, res, next) => {
+  !maintenance ? next() : res.status(503).render("pages/maintenance");
+});
 // erro 404
 app.use((req, res, next) => {
   res.status(404).render("pages/404", { page: "404 - Página não encontrada" });

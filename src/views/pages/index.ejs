@@ -4,100 +4,169 @@
   <body>
     <%- include('./partials/header'); %>
 
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <div
-      class="
-        relative
-        bg-gray-50
-        pt-16
-        pb-20
-        px-4
-        sm:px-6
-        lg:pt-24 lg:pb-28 lg:px-8
-      "
-    >
-      <div class="absolute inset-0">
-        <div class="bg-white h-1/3 sm:h-2/3"></div>
-      </div>
-      <div class="relative max-w-7xl mx-auto">
+    <!-- Blog List Section: Full Width -->
+    <div class="bg-gray-100">
+      <div
+        class="
+          space-y-16
+          container
+          xl:max-w-7xl
+          mx-auto
+          px-4
+          py-16
+          lg:px-8 lg:py-32
+        "
+      >
+        <!-- Heading -->
         <div class="text-center">
-          <h2
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Latest Posts</h2>
+          <h3
             class="
-              text-3xl
-              tracking-tight
-              font-extrabold
-              text-purple-900
-              sm:text-4xl
+              text-lg
+              md:text-xl md:leading-relaxed
+              font-medium
+              text-gray-600
+              lg:w-2/3
+              mx-auto
             "
           >
-            Nosso Blog
-          </h2>
-          <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-            Fique por dentro do que está rolando no mundo do desenvolvimento!
-          </p>
+            Be sure to
+            <a
+              href="javascript:void(0)"
+              class="text-purple-600 hover:text-purple-400"
+              >follow us on Twitter</a
+            >
+            or
+            <a
+              href="javascript:void(0)"
+              class="text-purple-600 hover:text-purple-400"
+              >join us</a
+            >
+            to stay up to date about any new posts.
+          </h3>
         </div>
-        <div
-          class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none"
-        >
-          <!-- Start -->
-          <% posts.forEach(post=>{%>
+        <!-- END Heading -->
 
-          <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-            <div class="flex-shrink-0">
-              <img
-                class="h-48 w-full object-cover"
-                src="/uploads/<%=post.featured_img%>"
-                alt=""
-              />
-            </div>
-            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-              <div class="flex-1">
-                <p class="text-sm font-medium text-purple-600">
-                  <a href="#" class="hover:underline">
-                    <%=post.category.name%>
-                  </a>
-                </p>
-                <a href="#" class="block mt-2">
-                  <a
-                    href="/post/<%=post.id%>"
-                    class="text-xl font-semibold text-gray-900"
+        <!-- Blog Posts -->
+        <% posts.forEach(post=>{%>
+        <div class="space-y-4 sm:space-y-10">
+          <div
+            class="
+              flex flex-col
+              lg:flex-row
+              items-center
+              bg-white
+              rounded-lg
+              overflow-hidden
+              shadow-sm
+            "
+          >
+            <div class="lg:w-2/5">
+              <a
+                href="/post/<%=post.id%>"
+                class="
+                  block
+                  relative
+                  group
+                  rounded-none
+                  lg:rounded-none
+                  overflow-hidden
+                "
+              >
+                <img
+                  src="/uploads/<%=post.featured_img%>"
+                  alt="Featured Image of blog post"
+                />
+                <div
+                  class="
+                    flex
+                    items-center
+                    justify-center
+                    absolute
+                    inset-0
+                    bg-purple-700 bg-opacity-75
+                    opacity-0
+                    transition
+                    ease-out
+                    duration-150
+                    group-hover:opacity-100
+                  "
+                >
+                  <svg
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="
+                      text-white
+                      transform
+                      -rotate-45
+                      hi-solid hi-arrow-right
+                      inline-block
+                      w-10
+                      h-10
+                    "
                   >
-                    <%=post.title%>
-                  </a>
-                  <p class="truncate mt-3 text-base text-gray-500">
-                    <%=post.content%>
-                  </p>
-                </a>
-              </div>
-              <div class="mt-6 flex items-center">
-                <div class="flex-shrink-0">
-                  <a href="#">
-                    <span class="sr-only"><%= post.user.username %></span>
-                    <img
-                      class="h-10 w-10 rounded-full"
-                      src="/uploads/<%= post.user.avatar %>"
-                      alt=""
-                    />
-                  </a>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
                 </div>
-                <div class="ml-3">
-                  <p class="text-sm font-medium text-gray-900">
-                    <a href="#" class="hover:underline">
-                      <%= post.user.username %>
-                    </a>
-                  </p>
-                  <div class="flex space-x-1 text-sm text-gray-500">
-                    <time datetime="2020-03-16"> <%=post.createdAt%> </time>
-                    <span aria-hidden="true"> &middot; </span>
-                  </div>
+              </a>
+            </div>
+            <div
+              class="
+                flex flex-col
+                items-start
+                justify-items-center
+                w-full
+                h-full
+                lg:w-3/5
+                p-6
+                lg:py-8 lg:px-10
+              "
+            >
+              <div class="mb-3">
+                <div
+                  class="
+                    font-semibold
+                    inline-flex
+                    px-2
+                    py-1
+                    leading-4
+                    text-sm
+                    rounded-full
+                    text-purple-700
+                    bg-purple-200
+                  "
+                >
+                  <%=post.category.name%>
                 </div>
               </div>
+              <h4 class="font-bold text-lg sm:text-xl mb-2">
+                <a
+                  href="/post/<%=post.id%>"
+                  class="leading-7 text-gray-800 hover:text-gray-600"
+                  ><%=post.title%></a
+                >
+              </h4>
+              <p class="text-gray-600 text-sm mb-3">
+                <a
+                  href="#"
+                  class="font-medium text-purple-600 hover:text-purple-400"
+                  ><%=post.user.username%></a
+                >
+                em <span class="font-medium"><%=post.createdAt%></span>
+                <!-- · 12 min  read-->
+              </p>
+              <p class="w-96 h-36"><%=post.content%></p>
             </div>
           </div>
-
-          <%})%>
         </div>
-        <!-- End -->
+
+        <%})%>
+        <!-- END Blog Posts -->
       </div>
     </div>
   </body>

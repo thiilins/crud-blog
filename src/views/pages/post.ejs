@@ -3,464 +3,183 @@
   <%- include('./partials/head'); %>
   <body>
     <%- include('./partials/header'); %>
-    <!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-    ],
-  }
-  ```
--->
-    <main
-      class="
-        flex flex-col
-        gap-6
-        place-items-center
-        px-64
-        py-10
-        space-x-4
-        items-center
-        justify-items-center
-      "
-    >
-      <div class="relative py-16 bg-white overflow-hidden">
-        <div
-          class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full"
-        >
-          <div
-            class="relative h-full text-lg max-w-prose mx-auto"
-            aria-hidden="true"
-          >
-            <svg
-              class="absolute top-12 left-full transform translate-x-32"
-              width="404"
-              height="384"
-              fill="none"
-              viewBox="0 0 404 384"
-            >
-              <defs>
-                <pattern
-                  id="74b3fd99-0a6f-4271-bef2-e80eeafdf357"
-                  x="0"
-                  y="0"
-                  width="20"
-                  height="20"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x="0"
-                    y="0"
-                    width="4"
-                    height="4"
-                    class="text-gray-200"
-                    fill="currentColor"
-                  />
-                </pattern>
-              </defs>
-              <rect
-                width="404"
-                height="384"
-                fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)"
-              />
-            </svg>
-            <svg
+    <main class="px-80 flex flex-col items-center justify-items-center gap-6">
+      <!-- Blog Post Section: Left Aligned With Extras -->
+      <div class="bg-white">
+        <div class="space-y-16 lg:px-8 lg:py-32">
+          <!-- Heading -->
+          <div>
+            <div
               class="
-                absolute
-                top-1/2
-                right-full
-                transform
-                -translate-y-1/2 -translate-x-32
-              "
-              width="404"
-              height="384"
-              fill="none"
-              viewBox="0 0 404 384"
-            >
-              <defs>
-                <pattern
-                  id="f210dbf6-a58d-4871-961e-36d5016a0f49"
-                  x="0"
-                  y="0"
-                  width="20"
-                  height="20"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x="0"
-                    y="0"
-                    width="4"
-                    height="4"
-                    class="text-gray-200"
-                    fill="currentColor"
-                  />
-                </pattern>
-              </defs>
-              <rect
-                width="404"
-                height="384"
-                fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
-              />
-            </svg>
-            <svg
-              class="absolute bottom-12 left-full transform translate-x-32"
-              width="404"
-              height="384"
-              fill="none"
-              viewBox="0 0 404 384"
-            >
-              <defs>
-                <pattern
-                  id="d3eb07ae-5182-43e6-857d-35c643af9034"
-                  x="0"
-                  y="0"
-                  width="20"
-                  height="20"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x="0"
-                    y="0"
-                    width="4"
-                    height="4"
-                    class="text-gray-200"
-                    fill="currentColor"
-                  />
-                </pattern>
-              </defs>
-              <rect
-                width="404"
-                height="384"
-                fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)"
-              />
-            </svg>
-          </div>
-        </div>
-        <div class="relative px-4 sm:px-6 lg:px-8">
-          <div class="text-lg max-w-prose mx-auto">
-            <h1>
-              <span
-                class="
-                  block
-                  text-base text-center text-indigo-600
-                  font-semibold
-                  tracking-wide
-                  uppercase
-                "
-                >Introducing</span
-              >
-              <span
-                class="
-                  mt-2
-                  block
-                  text-3xl text-center
-                  leading-8
-                  font-extrabold
-                  tracking-tight
-                  text-gray-900
-                  sm:text-4xl
-                "
-                >JavaScript for Beginners</span
-              >
-            </h1>
-            <p class="mt-8 text-xl text-gray-500 leading-8">
-              Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem.
-              At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at
-              vitae feugiat egestas ac. Diam nulla orci at in viverra
-              scelerisque eget. Eleifend egestas fringilla sapien.
-            </p>
-          </div>
-          <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-            <p>
-              Faucibus commodo massa rhoncus, volutpat.
-              <strong>Dignissim</strong> sed <strong>eget risus enim</strong>.
-              Mattis mauris semper sed amet vitae sed turpis id. Id dolor
-              praesent donec est. Odio penatibus risus viverra tellus varius sit
-              neque erat velit. Faucibus commodo massa rhoncus, volutpat.
-              Dignissim sed eget risus enim.
-              <a href="#">Mattis mauris semper</a> sed amet vitae sed turpis id.
-            </p>
-            <ul role="list">
-              <li>Quis elit egestas venenatis mattis dignissim.</li>
-              <li>
-                Cras cras lobortis vitae vivamus ultricies facilisis tempus.
-              </li>
-              <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
-            </ul>
-            <p>
-              Quis semper vulputate aliquam venenatis egestas sagittis quisque
-              orci. Donec commodo sit viverra aliquam porttitor ultrices gravida
-              eu. Tincidunt leo, elementum mattis elementum ut nisl, justo,
-              amet, mattis. Nunc purus, diam commodo tincidunt turpis. Amet,
-              duis sed elit interdum dignissim.
-            </p>
-            <h2>From beginner to expert in 30 days</h2>
-            <p>
-              Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam
-              consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod
-              vitae interdum mauris enim, consequat vulputate nibh. Maecenas
-              pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim
-              cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis
-              ipsum eu a sed convallis diam.
-            </p>
-            <blockquote>
-              <p>
-                Sagittis scelerisque nulla cursus in enim consectetur quam.
-                Dictum urna sed consectetur neque tristique pellentesque.
-                Blandit amet, sed aenean erat arcu morbi.
-              </p>
-            </blockquote>
-            <p>
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
-              enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor
-              praesent donec est. Odio penatibus risus viverra tellus varius sit
-              neque erat velit.
-            </p>
-            <figure>
-              <img
-                class="px-10 py-10 rounded-lg"
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3"
-                alt=""
-                width="1310"
-                height="873"
-              />
-              <figcaption>
-                Sagittis scelerisque nulla cursus in enim consectetur quam.
-              </figcaption>
-            </figure>
-            <h2>Everything you need to get up and running</h2>
-            <p>
-              Purus morbi dignissim senectus mattis <a href="#">adipiscing</a>.
-              Amet, massa quam varius orci dapibus volutpat cras. In amet eu
-              ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut
-              viverra ridiculus non molestie. Gravida quis fringilla amet eget
-              dui tempor dignissim. Facilisis auctor venenatis varius nunc,
-              congue erat ac. Cras fermentum convallis quam.
-            </p>
-            <p>
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
-              enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor
-              praesent donec est. Odio penatibus risus viverra tellus varius sit
-              neque erat velit.
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <aside
-      class="
-        flex flex-col
-        gap-6
-        place-items-center
-        px-36
-        py-10
-        space-x-4
-        items-center
-        justify-items-center
-      "
-    >
-      <div
-        class="
-          relative
-          bg-gray-50
-          pt-16
-          pb-20
-          px-4
-          sm:px-6
-          lg:pt-24 lg:pb-28 lg:px-8
-        "
-      >
-        <div class="absolute inset-0">
-          <div class="bg-white h-1/3 sm:h-2/3"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto">
-          <div class="text-center">
-            <h2
-              class="
-                text-3xl
-                tracking-tight
-                font-extrabold
-                text-gray-900
-                sm:text-4xl
+                text-sm
+                uppercase
+                font-bold
+                tracking-wider
+                mb-1
+                text-purple-700
               "
             >
-              From the blog
+              Development
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+              How to code like a pro
             </h2>
-            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-              libero labore natus atque, ducimus sed.
-            </p>
+            <h3
+              class="
+                text-lg
+                md:text-xl md:leading-relaxed
+                font-medium
+                text-gray-600
+              "
+            >
+              <a
+                href="javascript:void(0)"
+                class="text-purple-600 hover:text-purple-400"
+                >Michael Smith</a
+              >
+              on <span class="font-semibold">March 10, 2021</span> · 5 min read
+            </h3>
           </div>
-          <div
-            class="
-              mt-12
-              max-w-lg
-              mx-auto
-              grid
-              gap-5
-              lg:grid-cols-3 lg:max-w-none
-            "
-          >
-            <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-              <div class="flex-shrink-0">
-                <img
-                  class="h-48 w-full object-cover"
-                  src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
-                  alt=""
-                />
-              </div>
-              <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                <div class="flex-1">
-                  <p class="text-sm font-medium text-indigo-600">
-                    <a href="#" class="hover:underline"> Article </a>
-                  </p>
-                  <a href="#" class="block mt-2">
-                    <p class="text-xl font-semibold text-gray-900">
-                      Boost your conversion rate
-                    </p>
-                    <p class="mt-3 text-base text-gray-500">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Architecto accusantium praesentium eius, ut atque fuga
-                      culpa, similique sequi cum eos quis dolorum.
-                    </p>
-                  </a>
-                </div>
-                <div class="mt-6 flex items-center">
-                  <div class="flex-shrink-0">
-                    <a href="#">
-                      <span class="sr-only">Roel Aufderehar</span>
-                      <img
-                        class="h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-900">
-                      <a href="#" class="hover:underline"> Roel Aufderehar </a>
-                    </p>
-                    <div class="flex space-x-1 text-sm text-gray-500">
-                      <time datetime="2020-03-16"> Mar 16, 2020 </time>
-                      <span aria-hidden="true"> &middot; </span>
-                      <span> 6 min read </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- END Heading -->
 
-            <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-              <div class="flex-shrink-0">
-                <img
-                  class="h-48 w-full object-cover"
-                  src="https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
-                  alt=""
-                />
-              </div>
-              <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                <div class="flex-1">
-                  <p class="text-sm font-medium text-indigo-600">
-                    <a href="#" class="hover:underline"> Video </a>
-                  </p>
-                  <a href="#" class="block mt-2">
-                    <p class="text-xl font-semibold text-gray-900">
-                      How to use search engine optimization to drive sales
-                    </p>
-                    <p class="mt-3 text-base text-gray-500">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Velit facilis asperiores porro quaerat doloribus, eveniet
-                      dolore. Adipisci tempora aut inventore optio animi.,
-                      tempore temporibus quo laudantium.
-                    </p>
-                  </a>
+          <!-- Blog Post -->
+          <article class="prose prose-purple prose-lg">
+            <img
+              src="/uploads/<%=post.featured_img%>"
+              alt="<%=post.title%>"
+              class="rounded mb-5 p-5"
+            />
+            <p><%=post.content%></p>
+          </article>
+          <!-- END Blog Post -->
+        </div>
+      </div>
+      <!-- END Blog Post Section: Left Aligned With Extras -->
+    </main>
+    <aside>
+      <!-- Comments Section: Simple -->
+      <div class="bg-white">
+        <div class="container xl:max-w-7xl mx-auto px-4 py-16 lg:px-8 lg:py-32">
+          <div class="max-w-3xl mx-auto space-y-4 lg:space-y-8">
+            <!-- Post Comment Form -->
+            <form action="/comment/<%post.id%>" class="space-y-6">
+              <div>
+                <div class="text-right text-sm mb-1">
+                  Posting as <span class="font-medium">John Doe</span>,
+                  <a
+                    href="javascript:void(0)"
+                    class="text-purple-600 hover:text-purple-400"
+                    >not you?</a
+                  >
                 </div>
-                <div class="mt-6 flex items-center">
-                  <div class="flex-shrink-0">
-                    <a href="#">
-                      <span class="sr-only">Brenna Goyette</span>
-                      <img
-                        class="h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-900">
-                      <a href="#" class="hover:underline"> Brenna Goyette </a>
-                    </p>
-                    <div class="flex space-x-1 text-sm text-gray-500">
-                      <time datetime="2020-03-10"> Mar 10, 2020 </time>
-                      <span aria-hidden="true"> &middot; </span>
-                      <span> 4 min read </span>
-                    </div>
-                  </div>
-                </div>
+                <textarea
+                  class="
+                    block
+                    border border-gray-200
+                    rounded
+                    placeholder-gray-400
+                    px-3
+                    py-2
+                    w-full
+                    focus:border-purple-500
+                    focus:ring
+                    focus:ring-purple-500
+                    focus:ring-opacity-50
+                  "
+                  id="tk-comment"
+                  rows="4"
+                  placeholder="Join the conversation.."
+                ></textarea>
               </div>
-            </div>
+              <button
+                type="button"
+                class="
+                  inline-flex
+                  justify-center
+                  items-center
+                  space-x-2
+                  border
+                  font-semibold
+                  focus:outline-none
+                  px-3
+                  py-2
+                  leading-6
+                  rounded
+                  border-purple-700
+                  bg-purple-700
+                  text-white
+                  hover:text-white hover:bg-purple-800 hover:border-purple-800
+                  focus:ring focus:ring-purple-500 focus:ring-opacity-50
+                  active:bg-purple-700 active:border-purple-700
+                "
+              >
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="hi-solid hi-pencil inline-block w-5 h-5"
+                >
+                  <path
+                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                  ></path>
+                </svg>
+                <span>Post Comment</span>
+              </button>
+            </form>
+            <!-- END Post Comment Form -->
 
-            <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-              <div class="flex-shrink-0">
-                <img
-                  class="h-48 w-full object-cover"
-                  src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
-                  alt=""
-                />
-              </div>
-              <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                <div class="flex-1">
-                  <p class="text-sm font-medium text-indigo-600">
-                    <a href="#" class="hover:underline"> Case Study </a>
-                  </p>
-                  <a href="#" class="block mt-2">
-                    <p class="text-xl font-semibold text-gray-900">
-                      Improve your customer experience
-                    </p>
-                    <p class="mt-3 text-base text-gray-500">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Sint harum rerum voluptatem quo recusandae magni placeat
-                      saepe molestiae, sed excepturi cumque corporis perferendis
-                      hic.
-                    </p>
+            <hr />
+
+            <!-- Comment Box -->
+            <%post.comments.forEach(comment=>{%>
+
+            <div class="flex space-x-4 bg-gray-100 p-5 rounded-lg">
+              <img
+                src="/uploads/<%=comment.user.avatar%>"
+                alt="<%=comment.user.username%> Avatar "
+                title="<%=comment.user.username%> Avatar "
+                class="
+                  flex-none
+                  inline-block
+                  w-10
+                  h-10
+                  sm:w-16 sm:h-16
+                  rounded-full
+                "
+              />
+              <div class="flex-grow">
+                <p class="text-sm sm:text-base leading-relaxed mb-1">
+                  <a
+                    href="javascript:void(0)"
+                    class="font-semibold text-purple-600 hover:text-purple-400"
+                  >
+                    <%=comment.user.username%>
                   </a>
-                </div>
-                <div class="mt-6 flex items-center">
-                  <div class="flex-shrink-0">
-                    <a href="#">
-                      <span class="sr-only">Daniela Metz</span>
-                      <img
-                        class="h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-900">
-                      <a href="#" class="hover:underline"> Daniela Metz </a>
-                    </p>
-                    <div class="flex space-x-1 text-sm text-gray-500">
-                      <time datetime="2020-02-12"> Feb 12, 2020 </time>
-                      <span aria-hidden="true"> &middot; </span>
-                      <span> 11 min read </span>
-                    </div>
-                  </div>
-                </div>
+                  <%=comment.comment%>
+                </p>
+                <!-- <div class="text-sm space-x-2">
+                  <a
+                    href="javascript:void(0)"
+                    class="text-gray-600 hover:text-gray-500"
+                  >
+                    Like
+                  </a>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-gray-600 hover:text-gray-500"
+                  >
+                    Reply
+                  </a>
+                  <span class="text-gray-600">4h</span>
+                </div> -->
               </div>
             </div>
+            <%})%>
+            <!-- END Comment -->
           </div>
         </div>
       </div>
+      <!-- END Comments Section: Simple -->
     </aside>
   </body>
 </html>

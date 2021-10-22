@@ -5,7 +5,7 @@ const uploadFile = require("../middlewares/upload-file");
 // CONTROLLERS
 const AdminController = require("../controller/AdminController");
 const { PostControllerAdmin } = require("../controller/PostController");
-const CommentsController = require("../controller/CommentController");
+const { CommentControllerAdmin } = require("../controller/CommentController");
 const UserController = require("../controller/UserController");
 const CategoryController = require("../controller/CategoryController");
 
@@ -28,7 +28,11 @@ router.get("/sem-posts", AdminController.noPosts);
 router.get("/post", PostControllerAdmin.listPost);
 router.get("/post/:id?", PostControllerAdmin.viewPost);
 router.delete("/post/:id", PostControllerAdmin.deletePost);
-router.put("/post/:id", PostControllerAdmin.editPost);
+router.put(
+  "/post/:id",
+  uploadFile.single("featured_img"),
+  PostControllerAdmin.editPost
+);
 router.post(
   "/post",
   uploadFile.single("featured_img"),
@@ -36,10 +40,10 @@ router.post(
 );
 
 //COMMENTS
-router.post("/comments", CommentsController.createComment);
-router.get("/comments/:id?", CommentsController.listComments);
-router.put("/comments/:id?", CommentsController.editComment);
-router.delete("/comments/:id?", CommentsController.deleteComment);
+router.post("/comments", CommentControllerAdmin.createComment);
+router.get("/comments/:id?", CommentControllerAdmin.listComments);
+router.put("/comments/:id?", CommentControllerAdmin.editComment);
+router.delete("/comments/:id?", CommentControllerAdmin.deleteComment);
 
 //CATEGORY
 router.post("/category", CategoryController.createCategory);

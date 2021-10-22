@@ -2,13 +2,18 @@ const { User, Post, Comment, Category } = require("../models");
 
 const IndexController = {
   dashboard(req, res) {
-    res.render("admin/dashboard");
+    res.render("admin/dashboard", { file: "dashboard", page: "Painel" });
   },
   async addPost(req, res) {
     try {
       const categories = await Category.findAll();
       const users = await User.findAll();
-      res.render("admin/add-post", { categories, users });
+      res.render("admin/dashboard", {
+        categories,
+        users,
+        file: "add",
+        page: "Adicionar Post",
+      });
     } catch (error) {
       console.log(erro);
     }
@@ -38,7 +43,13 @@ const IndexController = {
       const categories = await Category.findAll();
       const users = await User.findAll();
       console.log(categories);
-      return res.render("admin/edit-post", { post, categories, users });
+      return res.render("admin/dashboard", {
+        file: "edit",
+        page: `Editar: ${post.title}`,
+        post,
+        categories,
+        users,
+      });
     } catch (error) {
       console.log(error);
       return res.render("admin/view-post", { error });
@@ -67,7 +78,11 @@ const IndexController = {
         ],
       });
 
-      return res.render("admin/delete-post", { post });
+      return res.render("admin/dashboard", {
+        file: "delete",
+        page: `Excluir: ${post.title}`,
+        post,
+      });
     } catch (error) {
       console.log(error);
       return res.render("admin/delete-post", { error });

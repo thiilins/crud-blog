@@ -1,6 +1,6 @@
 const { Category, Comment, User, Post } = require("../models");
 
-const CommentController = {
+const CommentControllerAdmin = {
   async listComments(req, res) {
     try {
       const comments = await Comment.findAll({
@@ -61,4 +61,22 @@ const CommentController = {
     }
   },
 };
-module.exports = CommentController;
+const CommentController = {
+  async createComment(req, res) {
+    try {
+      const { id } = req.params;
+      const { user_id, comment } = req.body;
+      const NewComment = await Comment.create({
+        user_id,
+        post_id: id,
+        comment,
+        enable: 1,
+      });
+      return res.redirect(`/post/${id}`);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json(error);
+    }
+  },
+};
+module.exports = { CommentController, CommentControllerAdmin };

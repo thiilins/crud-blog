@@ -28,7 +28,11 @@ const PostControllerAdmin = {
         }
       );
 
-      return res.render("admin/list-posts", { posts });
+      return res.render("admin/dashboard", {
+        file: "list",
+        page: "Posts",
+        posts,
+      });
     } catch (error) {
       console.log(error);
       return res.render("admin/list-posts", { error });
@@ -63,7 +67,11 @@ const PostControllerAdmin = {
         ],
       });
       // return res.status(200).json(post);
-      return res.render("admin/view-post", { post });
+      return res.render("admin/dashboard", {
+        file: "view",
+        page: post.title,
+        post,
+      });
     } catch (error) {
       console.log(error);
       return res.render("admin/view-post", { error });
@@ -71,10 +79,12 @@ const PostControllerAdmin = {
   },
   async createPost(req, res) {
     try {
+      const enable = 1;
       const { user_id, title, content, category_id } = req.body;
-      const featured_img = req.file.filename;
-      if (!featured_img) {
-        featured_img = "default.jpg";
+      let featured_img = "default.jpg";
+      if (req.file && req.files != "undefined") {
+        const { filename } = req.file;
+        featured_img = filename;
       }
       const newPost = await Post.create({
         user_id,
@@ -82,7 +92,7 @@ const PostControllerAdmin = {
         featured_img,
         content,
         category_id,
-        enable: 1,
+        enable,
       });
       return res.redirect("/admin/post");
     } catch (error) {
@@ -93,9 +103,11 @@ const PostControllerAdmin = {
   async editPost(req, res) {
     try {
       const { id } = req.params;
+      let featured_img = undefined;
       const { user_id, title, content, category_id, enable } = req.body;
-      if (!req.files) {
-        const featured_img = req.files.filename;
+      if (req.file && req.files != "undefined") {
+        const { filename } = req.file;
+        featured_img = filename;
       }
       const postUpdated = await Post.update(
         {
@@ -174,6 +186,7 @@ const PostController = {
             model: Comment,
             as: "comments",
             required: false,
+            include: { model: User, as: "user", required: true },
           },
         ],
       });
@@ -185,4 +198,3 @@ const PostController = {
   },
 };
 module.exports = { PostController, PostControllerAdmin };
-
