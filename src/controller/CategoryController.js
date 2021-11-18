@@ -1,4 +1,4 @@
-const { Category, Comment, User, Post } = require("../models");
+const { Category, Post } = require("../models");
 
 const CategoryController = {
   async listCategory(req, res) {
@@ -9,7 +9,9 @@ const CategoryController = {
       return res.status(200).json(categories);
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async createCategory(req, res) {
@@ -19,15 +21,17 @@ const CategoryController = {
         name,
         enable: 1,
       });
-      return res.status(200).json(NewCategory);
+      return res.status(201).json(NewCategory);
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async editCategory(req, res) {
     try {
-      const { id } = req.body;
+      const { id } = req.params;
       const { name, enable } = req.body;
       const categoryUpdated = await Category.update(
         {
@@ -36,24 +40,26 @@ const CategoryController = {
         },
         { where: { id } }
       );
-      return res.status(200).json(categoryUpdated);
+      return res.status(204).send();
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async deleteCategory(req, res) {
     try {
+      const { id } = req.params;
       const category = await Category.destroy({
         where: { id },
       });
-      return res.status(200).json({
-        Message: "Categoria Removida com Sucesso",
-        category,
-      });
+      return res.status(204).send();
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
 };

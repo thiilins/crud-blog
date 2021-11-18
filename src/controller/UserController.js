@@ -1,6 +1,5 @@
 const { User, Post, Comment } = require("../models");
-const errors = require("./errors");
-const bcrypt = require("bcryptjs");
+const crypto = require("../helpers/crypto");
 
 const UserController = {
   async listUsers(req, res) {
@@ -22,20 +21,24 @@ const UserController = {
     } catch (error) {
       console.log(error);
       return res.status(500).json({
-        error: error.errors[0].message,
-        exception: error.parent.sqlMessage,
+        error: "Ops, não foi possível processar sua solicitação no momento!",
       });
     }
   },
   async createUser(req, res) {
     try {
       const { fullname, username, password, github, linkedin, bio } = req.body;
-      const hash = bcrypt.hashSync(password, 10);
+      let avatar = "default_avatar.jpg";
+      const hash = crypto.create(password);
+      if (req.file && req.files != "undefined") {
+        const { filename } = req.file;
+        avatar = filename;
+      }
       const user = await User.create({
         fullname,
         username,
         password: hash,
-        avatar: null,
+        avatar,
         github,
         linkedin,
         bio,
@@ -45,14 +48,13 @@ const UserController = {
     } catch (error) {
       console.log(error);
       return res.status(500).json({
-        error: error.errors[0].message,
-        exception: error.parent.sqlMessage,
+        error: "Ops, não foi possível processar sua solicitação no momento!",
       });
     }
   },
   async editUser(req, res) {
     try {
-      const { id } = req.body;
+      const { id } = req.params;
       const {
         fullname,
         username,
@@ -79,24 +81,26 @@ const UserController = {
         },
         { where: { id } }
       );
-      return res.status(200).json(userUpdated);
+      return res.status(204).send();
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async deleteUser(req, res) {
     try {
+      const { id } = req.params;
       const user = await User.destroy({
         where: { id },
       });
-      return res.status(200).json({
-        Message: "Usuário Removido com Sucesso",
-        user,
-      });
+      return res.status(204).send();
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
 };

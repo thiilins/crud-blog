@@ -1,6 +1,6 @@
 const { Category, Comment, User, Post } = require("../models");
 
-const PostControllerAdmin = {
+const PostController = {
   async listPost(req, res) {
     try {
       const posts = await Post.findAll(
@@ -27,15 +27,12 @@ const PostControllerAdmin = {
           order: [["id", "ASC"]],
         }
       );
-
-      return res.render("admin/dashboard", {
-        file: "list",
-        page: "Posts",
-        posts,
-      });
+      return res.status(200).json(posts);
     } catch (error) {
       console.log(error);
-      return res.render("admin/list-posts", { error });
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async viewPost(req, res) {
@@ -66,15 +63,12 @@ const PostControllerAdmin = {
           },
         ],
       });
-      // return res.status(200).json(post);
-      return res.render("admin/dashboard", {
-        file: "view",
-        page: post.title,
-        post,
-      });
+      return res.status(200).json(post);
     } catch (error) {
       console.log(error);
-      return res.render("admin/view-post", { error });
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async createPost(req, res) {
@@ -94,10 +88,12 @@ const PostControllerAdmin = {
         category_id,
         enable,
       });
-      return res.redirect("/admin/post");
+      return res.status(201).json(newPost);
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async editPost(req, res) {
@@ -120,81 +116,27 @@ const PostControllerAdmin = {
         },
         { where: { id } }
       );
-      return res.redirect("/admin/post");
+      return res.status(204).send();
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async deletePost(req, res) {
-    const { id } = req.params;
     try {
+      const { id } = req.params;
       const post = await Post.destroy({
         where: { id },
       });
-      return res.redirect("/admin/post");
+      return res.status(204).send();
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
 };
-const PostController = {
-  async indexListPost(req, res) {
-    try {
-      const posts = await Post.findAll({
-        include: [
-          {
-            model: User,
-            as: "user",
-            required: true,
-          },
-          {
-            model: Category,
-            as: "category",
-            required: false,
-          },
-          {
-            model: Comment,
-            as: "comments",
-            required: false,
-          },
-        ],
-      });
-      return res.render("pages/index", { posts });
-    } catch (error) {
-      console.log(error);
-      return res.render("pages/index", { error });
-    }
-  },
-  async indexViewPost(req, res) {
-    const { id } = req.params;
-    try {
-      const post = await Post.findByPk(id, {
-        include: [
-          {
-            model: Category,
-            as: "category",
-            required: false,
-          },
-          {
-            model: User,
-            as: "user",
-            required: true,
-          },
-          {
-            model: Comment,
-            as: "comments",
-            required: false,
-            include: { model: User, as: "user", required: true },
-          },
-        ],
-      });
-      res.render("pages/post", { post });
-    } catch (error) {
-      console.log(error);
-      return res.render("pages/post", { error });
-    }
-  },
-};
-module.exports = { PostController, PostControllerAdmin };
+module.exports = PostController;

@@ -1,45 +1,33 @@
 const { User } = require("../models");
 
-const IndexController = {
-  loginPage(req, res) {
-    res.render("pages/login");
-  },
-  registerPage(req, res) {
-    res.render("pages/register");
-  },
-  redirectLogin(req, res) {
-    res.redirect("/auth/login");
-  },
-  redirectRegister(req, res) {
-    res.redirect("/auth/cadastro");
-  },
+const AuthController = {
   async login(req, res) {
-    res.redirect("/admin");
-  },
-  async register(req, res) {
     try {
-      const { fullname, username, password, github, linkedin, bio } = req.body;
-      let avatar = "default_avatar.jpg";
-      const hash = bcrypt.hashSync(password, 10);
-      if (req.file && req.files != "undefined") {
-        const { filename } = req.file;
-        avatar = filename;
+      const { email, senha } = req.body;
+      const user = await Usuario.findOne({ where: { email: email } });
+      const hash = user.senha;
+      if (!user || !crypto.validate(senha, hash)) {
+        return res.render("auth/login", {
+          page: "Login",
+          error: "Usuário ou Senha inválidos por favor tente novamente",
+        });
       }
-      const user = await User.create({
-        fullname,
-        username,
-        password: hash,
-        avatar,
-        github,
-        linkedin,
-        bio,
-        enable: 1,
-      });
-      return res.redirect("/login");
+      req.session.user = {
+        nome: user.nome,
+        sobrenome: user.sobrenome,
+      };
+      if (user.tipo_usuario == 1) {
+        req.session.user.admin = true;
+        return res.redirect("/admin");
+      } else {
+        user.admin = false;
+      }
     } catch (error) {
       console.log(error);
-      return res.render("pages/login", { error });
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
 };
-module.exports = IndexController;
+module.exports = AuthController;

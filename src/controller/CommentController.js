@@ -1,6 +1,6 @@
-const { Category, Comment, User, Post } = require("../models");
+const { Comment, User, Post } = require("../models");
 
-const CommentControllerAdmin = {
+const CommentController = {
   async listComments(req, res) {
     try {
       const comments = await Comment.findAll({
@@ -9,7 +9,9 @@ const CommentControllerAdmin = {
       return res.status(200).json(comments);
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async createComment(req, res) {
@@ -21,15 +23,17 @@ const CommentControllerAdmin = {
         comment,
         enable: 1,
       });
-      return res.status(200).json(NewComment);
+      return res.status(201).json(NewComment);
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
   async editComment(req, res) {
     try {
-      const { id } = req.body;
+      const { id } = req.params;
       const { user_id, post_id, comment, enable } = req.body;
       const commentUpdated = await Comment.update(
         {
@@ -48,35 +52,17 @@ const CommentControllerAdmin = {
   },
   async deleteComment(req, res) {
     try {
+      const { id } = req.params;
       const comment = await Comment.destroy({
         where: { id },
       });
-      return res.status(200).json({
-        Message: "Comentário Removido com Sucesso",
-        comment,
-      });
+      return res.status(204).send();
     } catch (error) {
       console.log(error);
-      return res.status(500).json(error);
+      return res.status(500).json({
+        error: "Ops, não foi possível processar sua solicitação no momento!",
+      });
     }
   },
 };
-const CommentController = {
-  async createComment(req, res) {
-    try {
-      const { id } = req.params;
-      const { user_id, comment } = req.body;
-      const NewComment = await Comment.create({
-        user_id,
-        post_id: id,
-        comment,
-        enable: 1,
-      });
-      return res.redirect(`/post/${id}`);
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json(error);
-    }
-  },
-};
-module.exports = { CommentController, CommentControllerAdmin };
+module.exports = CommentController;
